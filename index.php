@@ -1,3 +1,13 @@
+<?php
+spl_autoload_register( function($class){
+    include_once("classes/". $class . ".php");
+});
+
+session_start();
+
+$user = new User();
+$currentProfile = $user->getUser();
+?>
 <!doctype html>
 <html lang="en">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +23,7 @@
 <?php include_once('includes/include.nav2.php'); ?>
 <div class="row">
 <div id="profile" class="col-md-3">
-    <h3 id="name" class="text-center">Arne Van Beveren</h3>
+    <h3 id="name" class="text-center"><?php echo($currentProfile['firstname']);?> <?php echo($currentProfile['lastname']);?></h3>
 
         <div class="col-md-10 col-md-offset-1">
         <div class="input-group">
