@@ -12,8 +12,30 @@
 
 #date{
     color: #707070;
-    padding-left: 2em;
     font-weight: 100;
     padding-bottom: 20px;
     border-bottom: solid 1px #E8E8E8;
+}
+
+#list{
+    padding: 0;
+}
+
+#list ul li p{
+    color: #707070;
+    font-size: 1.1em;
+}
+
+#list ul{
+    list-style: none;
+    width: 100%;
+    padding: 0;
+}
+
+#list li{
+    padding-left: 2em;
+    padding-top: 1.5em;
+    padding-bottom: 1em;
+    border-bottom: solid 1px #E8E8E8;
+    width: 100%;
 }
