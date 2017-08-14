@@ -6,7 +6,9 @@ class Deadlines
     private $m_dDuration;
     private $m_sCourse;
     private $m_dExpiredate;
-    private $m_iId;
+
+
+    // GETTERS
 
     public function getDeadline()
     {
@@ -27,6 +29,10 @@ class Deadlines
     {
         return $this->m_dExpiredate;
     }
+
+
+
+    // SETTERS
 
 
     public function setDeadline($m_sDeadline)
@@ -58,6 +64,20 @@ class Deadlines
         $rResult = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $rResult;
+    }
+
+    public function AddDeadline() {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("insert into deadlines(deadline, duration, course, expiredate)
+                                      values (:deadline, :duration, :course, :expiredate)");
+        $statement->bindValue(":deadline", $this->m_sDeadline);
+        $statement->bindValue(":duration", $this->m_dDuration);
+        $statement->bindValue(":course", $this->m_sCourse);
+        $statement->bindValue(":expiredate", $this->m_dExpiredate);
+        if ($statement->execute()) {
+            header('Location: index.php');
+        }
+
     }
 
 
