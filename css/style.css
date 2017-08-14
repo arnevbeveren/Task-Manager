@@ -39,3 +39,16 @@
     border-bottom: solid 1px #E8E8E8;
     width: 100%;
 }
+
+.btns{
+    margin-left: 90%;
+    margin-top: -40px;
+}
+
+.btns #red{
+    color: red;
+}
+
+.btns #blue{
+    color: dodgerblue;
+}

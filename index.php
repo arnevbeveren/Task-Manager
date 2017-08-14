@@ -38,6 +38,15 @@ $currentProfile = $user->getUser();
         <ul>
             <li>
                 <p>Travel to Sri lanka</p>
+                <div class="btns">
+                <button type="button" class="btn btn-default" aria-label="Left Align">
+                    <span id="blue"  class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default" aria-label="Left Align">
+                    <span id="red" class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                </button>
+                </div>
+
             </li>
         </ul>
 
@@ -46,4 +55,6 @@ $currentProfile = $user->getUser();
 
 
 </body>
+<script src="js/bootstrap.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </html>
