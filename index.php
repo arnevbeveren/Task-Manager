@@ -21,18 +21,11 @@ $currentProfile = $user->getUser();
 </head>
 <body>
 <?php include_once('includes/include.nav2.php'); ?>
-<div class="row">
+
 <div id="profile" class="col-md-3">
     <h3 id="name" class="text-center"><?php echo($currentProfile['firstname']);?> <?php echo($currentProfile['lastname']);?></h3>
 
-        <div class="col-md-10 col-md-offset-1">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for...">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
-      </span>
-        </div><!-- /input-group -->
-        </div>
+    <button class="center-block">+ add task</button>
 </div>
 
     <div id="date" class="col-md-9">
@@ -41,8 +34,16 @@ $currentProfile = $user->getUser();
         <h4> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
             <?php echo (new \DateTime())->format('l, jS F, Y'); ?></h4>
     </div>
+    <div id="list" class="col-md-9">
+        <ul>
+            <li>
+                <p>Travel to Sri lanka</p>
+            </li>
+        </ul>
 
-</div>
+    </div>
+
+
 
 </body>
 </html>
