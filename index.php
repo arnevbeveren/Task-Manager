@@ -7,6 +7,9 @@ session_start();
 
 $user = new User();
 $currentProfile = $user->getUser();
+
+$deadline = new Deadlines();
+$deadlines = $deadline->getDeadlines();
 ?>
 <!doctype html>
 <html lang="en">
@@ -25,7 +28,8 @@ $currentProfile = $user->getUser();
 <div id="profile" class="col-md-3">
     <h3 id="name" class="text-center"><?php echo($currentProfile['firstname']);?> <?php echo($currentProfile['lastname']);?></h3>
 
-    <button class="center-block">+ add task</button>
+    <a href="add-deadline.php" class="center-block">+ add deadline</a>
+
 </div>
 
     <div id="date" class="col-md-9">
@@ -36,8 +40,11 @@ $currentProfile = $user->getUser();
     </div>
     <div id="list" class="col-md-9">
         <ul>
+            <?php foreach($deadlines as $key=>$deadline): ?>
             <li>
-                <p>Travel to Sri lanka</p>
+                <p><?php echo $deadline['deadline']; ?></p>
+                <p><?php echo $deadline['expiredate']; ?></p>
+                <p><?php echo $deadline['duration']; ?>h</p>
                 <div class="btns">
                 <button type="button" class="btn btn-default" aria-label="Left Align">
                     <span id="blue"  class="glyphicon glyphicon-cog" aria-hidden="true"></span>
@@ -48,6 +55,7 @@ $currentProfile = $user->getUser();
                 </div>
 
             </li>
+            <?php endforeach; ?>
         </ul>
 
     </div>
