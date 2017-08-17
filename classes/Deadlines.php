@@ -6,6 +6,7 @@ class Deadlines
     private $m_dDuration;
     private $m_sCourse;
     private $m_dExpiredate;
+    private $m_iId;
 
 
     // GETTERS
@@ -28,6 +29,11 @@ class Deadlines
     public function getExpiredate()
     {
         return $this->m_dExpiredate;
+    }
+
+    public function getId()
+    {
+        return $this->m_iId;
     }
 
 
@@ -54,11 +60,16 @@ class Deadlines
         $this->m_dExpiredate = $m_dExpiredate;
     }
 
+    public function setId($m_iId)
+    {
+        $this->m_iId = $m_iId;
+    }
+
 
     public function getDeadlines()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare("select deadline, duration, course, expiredate from deadlines order by expiredate ASC");
+        $statement = $conn->prepare("select deadline, duration, course, expiredate, id from deadlines order by expiredate ASC");
         $statement->execute();
 
         $rResult = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -69,16 +80,26 @@ class Deadlines
     public function AddDeadline()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare("insert into deadlines(deadline, duration, course, expiredate)
-                                      values (:deadline, :duration, :course, :expiredate)");
+        $statement = $conn->prepare("insert into deadlines(deadline, duration, course, expiredate, id)
+                                      values (:deadline, :duration, :course, :expiredate, :id)");
         $statement->bindValue(":deadline", $this->m_sDeadline);
         $statement->bindValue(":duration", $this->m_dDuration);
         $statement->bindValue(":course", $this->m_sCourse);
         $statement->bindValue(":expiredate", $this->m_dExpiredate);
+        $statement->bindValue(":id", $this->m_iId);
         if ($statement->execute()) {
             header('Location: index.php');
         }
 
+    }
+
+    public function removeDeadline() {
+
+
+        $db = Db::getInstance();
+        $statement = $db->prepare("DELETE FROM deadlines WHERE id = :id");
+        $statement->bindValue(':id', $this->m_iId, PDO::PARAM_INT);
+        $statement->execute();
     }
 
 

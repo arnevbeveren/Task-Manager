@@ -52,3 +52,76 @@
 .btns #blue{
     color: dodgerblue;
 }
+
+div.logo{
+    width: 80%;
+    margin-left: 10%;
+    background-color: #E8E8E8;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.logo span{
+    font-size: 2em;
+    padding-top: 1.5em;
+}
+
+.logo p{
+    color: #707070;
+    padding-bottom: 1em;
+}
+
+.logo h2{
+    color: #505050;
+}
+
+.c{
+    height: 10px;
+    width: 25%;
+    display: block;
+    float: left;
+}
+
+.c1{
+    background-color: #FFA92F;
+    border-top-left-radius: 5px;
+}
+
+.c2{
+    background-color: #FF763C;
+}
+
+.c3{
+    background-color: #E75237;
+}
+
+.c4{
+    background-color: #FE4A49;
+    border-top-right-radius: 5px;
+}
+
+.logo a{
+    width: 80%;
+    margin-left: 10%;
+    padding-bottom: 2em;
+    text-decoration: none;
+}
+
+.logo a p{
+    background-color: #FE4A49;
+    padding-top: 0.8em;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.logo a p:hover{
+    opacity: 0.9;
+}
+
+nav a.name{
+    font-weight: 800;
+}
+
+.btnRemove{
+    font-size: 1em;
+}
