@@ -49,7 +49,7 @@ $deadlines = $deadline->getDeadlines();
                 <button type="button" class="btn btn-default" aria-label="Left Align">
                     <span id="blue"  class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                 </button>
-                <button type="button" class="btn btn-default" aria-label="Left Align">
+                <button type="button" class="delete btn btn-default" aria-label="Left Align">
                     <span id="red" class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
                 </button>
                 </div>

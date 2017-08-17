@@ -31,7 +31,6 @@ class Deadlines
     }
 
 
-
     // SETTERS
 
 
@@ -56,7 +55,8 @@ class Deadlines
     }
 
 
-    public function getDeadlines() {
+    public function getDeadlines()
+    {
         $conn = Db::getInstance();
         $statement = $conn->prepare("select deadline, duration, course, expiredate from deadlines order by expiredate ASC");
         $statement->execute();
@@ -66,7 +66,8 @@ class Deadlines
         return $rResult;
     }
 
-    public function AddDeadline() {
+    public function AddDeadline()
+    {
         $conn = Db::getInstance();
         $statement = $conn->prepare("insert into deadlines(deadline, duration, course, expiredate)
                                       values (:deadline, :duration, :course, :expiredate)");
@@ -84,3 +85,7 @@ class Deadlines
 
 
 }
+
+
+
+
