@@ -179,3 +179,17 @@ p#duration{
 .grijs{
     background-color: #909090;
 }
+
+.lists{
+    list-style: none;
+}
+
+.lists li a{
+    text-decoration: none;
+    color: #707070;
+}
+
+#folder{
+    font-size: 1em;
+    padding-right: 1em;
+}

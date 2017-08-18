@@ -77,6 +77,17 @@ class Deadlines
         return $rResult;
     }
 
+    public function getLists()
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("select list from deadlines");
+        $statement->execute();
+
+        $rResult = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $rResult;
+    }
+
 
     public function AddDeadline()
     {

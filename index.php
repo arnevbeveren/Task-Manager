@@ -62,6 +62,28 @@ if( !empty($_POST)){
 
         <a href="add-deadline.php" class="center-block"><p class="text-center">+ add deadline</p></a>
 
+        <h2 class="text-center">Lists</h2>
+
+        <ul class="lists">
+            <?php
+            $lastList = "";
+            foreach($deadlines as $key=>$deadline):
+                $list = $deadline['list'];
+                ?>
+            <li>
+                <a href="<?php echo $list ?>.php">
+                    <?php
+
+                    if($list !== $lastList){
+                        echo "<span id='folder' class=\"glyphicon glyphicon-folder-open\" aria-hidden=\"true\"></span>" . $list;
+                        $lastList = $list;
+                    }
+                    ?>
+                </a>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+
     </div>
 
 
