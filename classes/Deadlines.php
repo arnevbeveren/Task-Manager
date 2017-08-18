@@ -4,7 +4,7 @@ class Deadlines
 {
     private $m_sDeadline;
     private $m_dDuration;
-    private $m_sCourse;
+    private $m_sList;
     private $m_dExpiredate;
     private $m_iId;
 
@@ -21,9 +21,9 @@ class Deadlines
         return $this->m_dDuration;
     }
 
-    public function getCourse()
+    public function getList()
     {
-        return $this->m_sCourse;
+        return $this->m_sList;
     }
 
     public function getExpiredate()
@@ -50,9 +50,9 @@ class Deadlines
         $this->m_dDuration = $m_dDuration;
     }
 
-    public function setCourse($m_sCourse)
+    public function setList($m_sList)
     {
-        $this->m_sCourse = $m_sCourse;
+        $this->m_sList = $m_sList;
     }
 
     public function setExpiredate($m_dExpiredate)
@@ -69,7 +69,7 @@ class Deadlines
     public function getDeadlines()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare("select deadline, duration, course, expiredate, id from deadlines order by expiredate ASC");
+        $statement = $conn->prepare("select deadline, duration, list, expiredate, id from deadlines order by expiredate ASC");
         $statement->execute();
 
         $rResult = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -81,11 +81,11 @@ class Deadlines
     public function AddDeadline()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare("insert into deadlines(deadline, duration, course, expiredate, id)
-                                      values (:deadline, :duration, :course, :expiredate, :id)");
+        $statement = $conn->prepare("insert into deadlines(deadline, duration, list, expiredate, id)
+                                      values (:deadline, :duration, :list, :expiredate, :id)");
         $statement->bindValue(":deadline", $this->m_sDeadline);
         $statement->bindValue(":duration", $this->m_dDuration);
-        $statement->bindValue(":course", $this->m_sCourse);
+        $statement->bindValue(":list", $this->m_sList);
         $statement->bindValue(":expiredate", $this->m_dExpiredate);
         $statement->bindValue(":id", $this->m_iId);
         if ($statement->execute()) {
