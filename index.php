@@ -119,6 +119,7 @@ if( !empty($_POST)){
 
                         ?></p>
 
+
                     <p class="grijs" id="expiredate">
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                         <?php echo (new \DateTime($deadline['expiredate']))->format('l, jS F, Y'); ?></p>
@@ -128,6 +129,8 @@ if( !empty($_POST)){
                         <?php echo $deadline['duration']; ?>h</p>
 
                     <p class="" id="deadline"><?php echo $deadline['deadline']; ?></p>
+
+                    <p class="" id="list"><?php echo $deadline['list']; ?></p>
 
                 <form class="remover" method='post' action=''>
 
