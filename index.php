@@ -86,7 +86,17 @@ if( !empty($_POST)){
 
 
                     <p><?php echo $deadline['deadline']; ?></p>
-                    <p><?php echo $deadline['expiredate']; ?></p>
+
+                    <p><?php echo (new \DateTime($deadline['expiredate']))->format('l, jS F, Y'); ?></p>
+
+                    <p><?php
+                        $date = strtotime($deadline['expiredate']);
+                        $remaining = $date - time();
+                        $days_remaining = floor($remaining / 86400);
+                        $hours_remaining = floor(($remaining % 86400) / 3600);
+                        echo "$days_remaining days and $hours_remaining hours left";
+                        ?></p>
+
                     <p><?php echo $deadline['duration']; ?>h</p>
 
                 <form method='post' action=''>
