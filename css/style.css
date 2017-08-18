@@ -4,11 +4,6 @@
     height: 600px;
 }
 
-#name{
-    padding-top: 2em;
-    padding-bottom: 2em;
-    color: #707070;
-}
 
 #date{
     color: #707070;
@@ -21,10 +16,6 @@
     padding: 0;
 }
 
-#list ul li p{
-    color: #707070;
-    font-size: 1.1em;
-}
 
 #list ul{
     list-style: none;
@@ -124,4 +115,67 @@ nav a.name{
 
 .btnRemove{
     font-size: 1em;
+}
+
+p#deadline{
+    font-size: 1.5em;
+    font-weight: 500;
+    position: relative;
+    margin-top: 1.5em;
+    color: #707070;
+}
+
+p#expiredate{
+    font-size: 0.8em;
+    padding: 0.2em;
+    display: block;
+    float: left;
+    border-radius: 5px;
+    color: #fff;
+    margin-left: 1em;
+}
+
+p#timeleft{
+    color: #fff;
+    font-size: 0.8em;
+    padding: 0.2em;
+    display: block;
+    float: left;
+    border-radius: 5px;
+}
+
+p#duration{
+    font-size: 0.8em;
+    padding: 0.2em;
+    display: block;
+    float: left;
+    margin-left: 1em;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.remover{
+    margin-left: 90%;
+    margin-top: -45px;
+    padding-bottom: 20px;
+}
+
+.rood{
+    background-color: #FE4A49;
+}
+
+.oranje{
+    background-color: #E75237;
+}
+
+.geel{
+    background-color: #FF763C;
+}
+
+.nostress{
+    background-color: #FFA92F;
+}
+
+.grijs{
+    background-color: #909090;
 }

@@ -5,7 +5,7 @@ class User
     private $m_sLastname;
     private $m_sEmail;
     private $m_sPassWord;
-    private $m_sUserId;
+    private $m_iUserId;
 
     /**
      * @return mixed
@@ -23,7 +23,7 @@ class User
         if (!empty($m_sFirstName)) {
             $this->m_sFirstName = $m_sFirstName;
         } else {
-            throw new Exception("Vul alstublieft een voornaam in");
+            throw new Exception("Fill in a name please");
         }
     }
 
@@ -43,7 +43,7 @@ class User
         if (!empty($m_sLastname)) {
             $this->m_sLastname = $m_sLastname;
         } else {
-            throw new Exception("Vul alstublieft een achternaam in");
+            throw new Exception("Fill in a name please");
         }
     }
 
@@ -63,8 +63,18 @@ class User
         if (!empty($m_sEmail)) {
             $this->m_sEmail = $m_sEmail;
         } else {
-            throw new Exception("Vul een geldig password in");
+            throw new Exception("Use a valid email please");
         }
+    }
+
+    public function getUserId()
+    {
+        return $this->m_iUserId;
+    }
+
+    public function setUserId($m_iUserId)
+    {
+            $this->m_iUserId = $m_iUserId;
     }
 
     /**
@@ -83,7 +93,7 @@ class User
         if (!empty($m_sPassWord) && strlen($m_sPassWord) > 6) {
             $this->m_sPassWord = $m_sPassWord;
         } else {
-            throw new Exception("Vul alstublieft een geldig paswoord in dat meer dan 6 karakters bevat");
+            throw new Exception("Your password must contain at least 6 characters");
         }
     }
 
@@ -104,11 +114,12 @@ class User
     public function Save()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare("INSERT INTO users (firstname, lastname, email, password
-                ) VALUES (:firstname, :lastname, :email, :password)");
+        $statement = $conn->prepare("INSERT INTO users (firstname, lastname, email, password, userid)
+VALUES (:firstname, :lastname, :email, :password, :userid)");
         $statement->bindValue(":firstname", $this->getFirstName());
         $statement->bindValue(":lastname", $this->getLastname());
         $statement->bindValue(":email", $this->getEmail());
+        $statement->bindValue(":userid", $this->getUserId());
         //paswoord hier pas hashen
         //Bcrypt password
         $options = [

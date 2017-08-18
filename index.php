@@ -83,13 +83,53 @@ if( !empty($_POST)){
 
             <li id="<?php echo $deadline['id']; ?>">
 
+                    <p class="
+                    <?php
+                    $date = strtotime($deadline['expiredate']);
+                        if($date < (time() + 86400 )){
+                            echo "rood";
+                        }
+                    else if($date < (time() + 259200 )){
+                        echo "oranje";
+                    }
+                    else if($date < (time() + 604800 )){
+                        echo "geel";
+                    }
+                    else{
+                        echo "nostress";
+                    }
+                    ?>
+                    " id="timeleft">
+                        <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                        <?php
+                        $date = strtotime($deadline['expiredate']);
+                        if($date > time()){
+                        $remaining = $date - time();
+                        $days_remaining = floor($remaining / 86400);
+                        $hours_remaining = floor(($remaining % 86400) / 3600);
+                            if($days_remaining < 1){
+                                echo "$hours_remaining hours left";
+                            }
+                            else{
+                                echo "$days_remaining days and $hours_remaining hours left";}
+                        }
+                        else{
+                            echo "expired";
+                        }
 
+                        ?></p>
 
-                    <p><?php echo $deadline['deadline']; ?></p>
-                    <p><?php echo $deadline['expiredate']; ?></p>
-                    <p><?php echo $deadline['duration']; ?>h</p>
+                    <p class="grijs" id="expiredate">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                        <?php echo (new \DateTime($deadline['expiredate']))->format('l, jS F, Y'); ?></p>
 
-                <form method='post' action=''>
+                    <p class="grijs" id="duration">
+                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                        <?php echo $deadline['duration']; ?>h</p>
+
+                    <p class="" id="deadline"><?php echo $deadline['deadline']; ?></p>
+
+                <form class="remover" method='post' action=''>
 
                     <input type='hidden' name='action' value='removeDeadline' />
 
