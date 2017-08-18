@@ -83,13 +83,13 @@ if( !empty($_POST)){
 
             <li id="<?php echo $deadline['id']; ?>">
 
+                    <p class="details" id="expiredate">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                        <?php echo (new \DateTime($deadline['expiredate']))->format('l, jS F, Y'); ?></p>
 
-
-                    <p><?php echo $deadline['deadline']; ?></p>
-
-                    <p><?php echo (new \DateTime($deadline['expiredate']))->format('l, jS F, Y'); ?></p>
-
-                    <p><?php
+                    <p class="details" id="timeleft">
+                        <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                        <?php
                         $date = strtotime($deadline['expiredate']);
                         $remaining = $date - time();
                         $days_remaining = floor($remaining / 86400);
@@ -97,9 +97,13 @@ if( !empty($_POST)){
                         echo "$days_remaining days and $hours_remaining hours left";
                         ?></p>
 
-                    <p><?php echo $deadline['duration']; ?>h</p>
+                    <p class="details" id="duration">
+                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                        <?php echo $deadline['duration']; ?>h</p>
 
-                <form method='post' action=''>
+                    <p class="details" id="deadline"><?php echo $deadline['deadline']; ?></p>
+
+                <form class="remover" method='post' action=''>
 
                     <input type='hidden' name='action' value='removeDeadline' />
 

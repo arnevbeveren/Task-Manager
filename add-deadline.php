@@ -4,6 +4,11 @@ spl_autoload_register( function($class){
     include_once("classes/". $class . ".php");
 });
 
+    session_start();
+
+    $user = new User();
+    $currentProfile = $user->getUser();
+
     $deadline = new Deadlines();
 
 if (!empty($_POST)) {
@@ -20,6 +25,7 @@ if (!empty($_POST)) {
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" href="css/register.css">
+<link rel="stylesheet" href="css/style.css">
 <meta charset="UTF-8">
 <head>
     <meta charset="UTF-8">
