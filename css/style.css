@@ -127,28 +127,25 @@ p#deadline{
 
 p#expiredate{
     font-size: 0.8em;
-    background-color: #FE4A49;
     padding: 0.2em;
     display: block;
     float: left;
     border-radius: 5px;
     color: #fff;
+    margin-left: 1em;
 }
 
 p#timeleft{
     color: #fff;
     font-size: 0.8em;
-    background-color: #FE4A49;
     padding: 0.2em;
     display: block;
     float: left;
-    margin-left: 1em;
     border-radius: 5px;
 }
 
 p#duration{
     font-size: 0.8em;
-    background-color: #FE4A49;
     padding: 0.2em;
     display: block;
     float: left;
@@ -161,4 +158,24 @@ p#duration{
     margin-left: 90%;
     margin-top: -45px;
     padding-bottom: 20px;
+}
+
+.rood{
+    background-color: #FE4A49;
+}
+
+.oranje{
+    background-color: #E75237;
+}
+
+.geel{
+    background-color: #FF763C;
+}
+
+.nostress{
+    background-color: #FFA92F;
+}
+
+.grijs{
+    background-color: #909090;
 }
