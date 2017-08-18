@@ -9,8 +9,22 @@ session_start();
 $user = new User();
 $currentProfile = $user->getUser();
 
+
 $deadline = new Deadlines();
-$deadlines = $deadline->getDeadlines();
+
+
+if(isset($_GET["list"])){
+    $deadline->setList( $_GET["list"] );
+    $deadlines = $deadline->getDeadlineList();
+    $deadlines_menu = $deadline->getDeadlines();
+
+}
+else{
+    $deadlines = $deadline->getDeadlines();
+    $deadlines_menu = $deadline->getDeadlines();
+}
+
+
 
 if( !empty($_POST)){
 
@@ -61,6 +75,32 @@ if( !empty($_POST)){
 
 
         <a href="add-deadline.php" class="center-block"><p class="text-center">+ add deadline</p></a>
+
+        <h2 class="text-center">Lists</h2>
+
+        <ul class="lists">
+            <li>
+                <a href="index.php"><span id='folder' class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> All deadlines</a>
+            </li>
+            <?php
+            $lastList = "";
+            foreach($deadlines_menu as $key=>$deadline):
+                $list = $deadline['list'];
+                ?>
+            <li>
+                <a href="index.php?list=<?php echo $list ?>">
+
+                    <?php
+
+                    if($list !== $lastList){
+                        echo "<span id='folder' class=\"glyphicon glyphicon-folder-open\" aria-hidden=\"true\"></span>" . $list;
+                        $lastList = $list;
+                    }
+                    ?>
+                </a>
+            </li>
+            <?php endforeach; ?>
+        </ul>
 
     </div>
 

@@ -13,7 +13,7 @@ spl_autoload_register( function($class){
 
 if (!empty($_POST)) {
     $deadline->setDeadline($_POST['deadline']);
-    $deadline->setCourse($_POST['course']);
+    $deadline->setList($_POST['list']);
     $deadline->setDuration($_POST['duration']);
     $deadline->setExpiredate($_POST['expiredate']);
     $deadline->AddDeadline();
@@ -43,7 +43,7 @@ if (!empty($_POST)) {
 
             <input id="textvak" type="text" class="form-control" placeholder="Deadline" name="deadline" aria-describedby="basic-addon1">
 
-            <input id="textvak" type="text" class="form-control" placeholder="Course" name="course" aria-describedby="basic-addon1">
+            <input id="textvak" type="text" class="form-control" placeholder="List" name="list" aria-describedby="basic-addon1">
 
             <input id="textvak" type="number" class="form-control" placeholder="Duration" name="duration" aria-describedby="basic-addon1">
 

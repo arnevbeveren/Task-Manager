@@ -77,6 +77,22 @@ class Deadlines
         return $rResult;
     }
 
+    public function getDeadlineList()
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("select * from deadlines WHERE list = :list");
+                                     ("select list from deadlines");
+        $statement->bindValue(':list', $this->m_sList, PDO::PARAM_INT);
+        $statement->execute();
+
+        $rResult = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $rResult;
+    }
+
+
+
+
 
     public function AddDeadline()
     {
@@ -98,7 +114,7 @@ class Deadlines
 
 
         $db = Db::getInstance();
-        $statement = $db->prepare("DELETE FROM deadlines WHERE id = :id");
+        $statement = $db->prepare("DELETE * FROM deadlines WHERE id = :id");
         $statement->bindValue(':id', $this->m_iId, PDO::PARAM_INT);
         $statement->execute();
     }
