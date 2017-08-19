@@ -1,5 +1,9 @@
 <?php
 
+spl_autoload_register( function($class){
+    include_once("classes/". $class . ".php");
+});
+
 class Deadlines
 {
     private $m_sDeadline;
@@ -7,6 +11,9 @@ class Deadlines
     private $m_sList;
     private $m_dExpiredate;
     private $m_iId;
+    private $m_iUserId;
+    private $m_sFirstName;
+    private $m_sLastName;
 
 
     // GETTERS
@@ -35,6 +42,23 @@ class Deadlines
     {
         return $this->m_iId;
     }
+
+    public function getUserId()
+    {
+        return $this->m_iUserId;
+    }
+
+    public function getFirstName()
+    {
+        return $this->m_sFirstName;
+    }
+
+    public function getLastName()
+    {
+        return $this->m_sLastName;
+    }
+
+
 
 
     // SETTERS
@@ -65,11 +89,26 @@ class Deadlines
         $this->m_iId = $m_iId;
     }
 
+    public function setUserId($m_iUserId)
+    {
+        $this->m_iUserId = $m_iUserId;
+    }
+
+    public function setFirstName($m_sFirstName)
+    {
+        $this->m_sFirstName = $m_sFirstName;
+    }
+
+    public function setLastName($m_sLastName)
+    {
+        $this->m_sLastName = $m_sLastName;
+    }
+
 
     public function getDeadlines()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare("select deadline, duration, list, expiredate, id from deadlines order by expiredate ASC");
+        $statement = $conn->prepare("select * from deadlines inner join users on users.id = deadlines.userid order by expiredate ASC");
         $statement->execute();
 
         $rResult = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -80,7 +119,7 @@ class Deadlines
     public function getDeadlineList()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare("select * from deadlines WHERE list = :list");
+        $statement = $conn->prepare("select * from deadlines inner join users on users.id = deadlines.userid WHERE list = :list  order by expiredate ASC");
                                      ("select list from deadlines");
         $statement->bindValue(':list', $this->m_sList, PDO::PARAM_INT);
         $statement->execute();
@@ -97,13 +136,16 @@ class Deadlines
     public function AddDeadline()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare("insert into deadlines(deadline, duration, list, expiredate, id)
-                                      values (:deadline, :duration, :list, :expiredate, :id)");
-        $statement->bindValue(":deadline", $this->m_sDeadline);
-        $statement->bindValue(":duration", $this->m_dDuration);
-        $statement->bindValue(":list", $this->m_sList);
-        $statement->bindValue(":expiredate", $this->m_dExpiredate);
-        $statement->bindValue(":id", $this->m_iId);
+        $statement = $conn->prepare("insert into deadlines(deadline, duration, list, expiredate, id, userid)
+                                      values (:deadline, :duration, :list, :expiredate, :id, :userid)");
+        $statement->bindValue(":deadline", $this->m_sDeadline, PDO::PARAM_INT);
+        $statement->bindValue(":duration", $this->m_dDuration, PDO::PARAM_INT);
+        $statement->bindValue(":list", $this->m_sList, PDO::PARAM_INT);
+        $statement->bindValue(":expiredate", $this->m_dExpiredate, PDO::PARAM_INT);
+        $statement->bindValue(":id", $this->m_iId, PDO::PARAM_INT);
+        $statement->bindValue(":userid", $this->m_iUserId, PDO::PARAM_INT);
+
+
         if ($statement->execute()) {
             header('Location: index.php');
         }
@@ -114,7 +156,7 @@ class Deadlines
 
 
         $db = Db::getInstance();
-        $statement = $db->prepare("DELETE * FROM deadlines WHERE id = :id");
+        $statement = $db->prepare("DELETE FROM deadlines WHERE id = :id");
         $statement->bindValue(':id', $this->m_iId, PDO::PARAM_INT);
         $statement->execute();
     }
