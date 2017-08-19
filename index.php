@@ -61,6 +61,8 @@ if( !empty($_POST)){
 <body>
 <?php include_once('includes/include.nav2.php'); ?>
 
+<div class="wrapper">
+
 <div id="profile" class="col-md-3">
 
 
@@ -190,6 +192,8 @@ if( !empty($_POST)){
         </ul>
 
     </div>
+
+</div>
 
 
 
