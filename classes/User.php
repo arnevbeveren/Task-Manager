@@ -103,7 +103,7 @@ class User
     public function Save()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare("INSERT INTO users (firstname, lastname, email, password, userid)
+        $statement = $conn->prepare("INSERT INTO users (firstname, lastname, email, password, id)
 VALUES (:firstname, :lastname, :email, :password, :userid)");
         $statement->bindValue(":firstname", $this->getFirstName());
         $statement->bindValue(":lastname", $this->getLastName());
