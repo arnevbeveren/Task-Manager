@@ -13,6 +13,8 @@ $currentProfile = $user->getUser();
 $deadline = new Deadlines();
 
 
+
+
 if(isset($_GET["list"])){
     $deadline->setList( $_GET["list"] );
     $deadlines = $deadline->getDeadlineList();
@@ -172,8 +174,7 @@ if( !empty($_POST)){
 
                     <p class="" id="list"><?php echo $deadline['list']; ?></p>
 
-                    <p class="" id="name"><?php echo $deadline['firstname']; ?></p>
-                    <p class="" id="name"><?php echo $deadline['lastname']; ?></p>
+                    <p class="" id="name">by <?php echo $deadline['firstname']; echo " "; echo $deadline['lastname']; ?></p>
 
                 <form class="remover" method='post' action=''>
 

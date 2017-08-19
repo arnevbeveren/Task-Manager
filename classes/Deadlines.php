@@ -105,11 +105,10 @@ class Deadlines
     }
 
 
-
     public function getDeadlines()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare("select * from deadlines order by expiredate ASC");
+        $statement = $conn->prepare("select * from deadlines inner join users on users.id = deadlines.userid order by expiredate ASC");
         $statement->execute();
 
         $rResult = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -120,7 +119,7 @@ class Deadlines
     public function getDeadlineList()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare("select * from deadlines WHERE list = :list");
+        $statement = $conn->prepare("select * from deadlines inner join users on users.id = deadlines.userid WHERE list = :list  order by expiredate ASC");
                                      ("select list from deadlines");
         $statement->bindValue(':list', $this->m_sList, PDO::PARAM_INT);
         $statement->execute();
