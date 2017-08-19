@@ -11,11 +11,13 @@ spl_autoload_register( function($class){
 
     $deadline = new Deadlines();
 
+
 if (!empty($_POST)) {
     $deadline->setDeadline($_POST['deadline']);
     $deadline->setList($_POST['list']);
     $deadline->setDuration($_POST['duration']);
     $deadline->setExpiredate($_POST['expiredate']);
+    $deadline->setUserId($_SESSION['user_id']);
     $deadline->AddDeadline();
 }
 
@@ -26,6 +28,7 @@ if (!empty($_POST)) {
 <link href="css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" href="css/register.css">
 <link rel="stylesheet" href="css/style.css">
+<script src="js/jquery-3.2.1.min.js"></script>
 <meta charset="UTF-8">
 <head>
     <meta charset="UTF-8">

@@ -172,6 +172,9 @@ if( !empty($_POST)){
 
                     <p class="" id="list"><?php echo $deadline['list']; ?></p>
 
+                    <p class="" id="name"><?php echo $deadline['firstname']; ?></p>
+                    <p class="" id="name"><?php echo $deadline['lastname']; ?></p>
+
                 <form class="remover" method='post' action=''>
 
                     <input type='hidden' name='action' value='removeDeadline' />

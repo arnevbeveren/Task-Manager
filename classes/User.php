@@ -1,23 +1,24 @@
 <?php
+
+spl_autoload_register( function($class){
+    include_once("classes/". $class . ".php");
+});
+
 class User
 {
     private $m_sFirstName;
-    private $m_sLastname;
+    private $m_sLastName;
     private $m_sEmail;
     private $m_sPassWord;
     private $m_iUserId;
 
-    /**
-     * @return mixed
-     */
+
     public function getFirstName()
     {
         return $this->m_sFirstName;
     }
 
-    /**
-     * @param mixed $m_sFirstName
-     */
+
     public function setFirstName($m_sFirstName)
     {
         if (!empty($m_sFirstName)) {
@@ -27,37 +28,29 @@ class User
         }
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLastname()
+
+    public function getLastName()
     {
-        return $this->m_sLastname;
+        return $this->m_sLastName;
     }
 
-    /**
-     * @param mixed $m_sLastname
-     */
-    public function setLastname($m_sLastname)
+
+    public function setLastName($m_sLastName)
     {
-        if (!empty($m_sLastname)) {
-            $this->m_sLastname = $m_sLastname;
+        if (!empty($m_sLastName)) {
+            $this->m_sLastName = $m_sLastName;
         } else {
             throw new Exception("Fill in a name please");
         }
     }
 
-    /**
-     * @return mixed
-     */
+
     public function getEmail()
     {
         return $this->m_sEmail;
     }
 
-    /**
-     * @param mixed $m_sEmail
-     */
+
     public function setEmail($m_sEmail)
     {
         if (!empty($m_sEmail)) {
@@ -77,17 +70,13 @@ class User
             $this->m_iUserId = $m_iUserId;
     }
 
-    /**
-     * @return mixed
-     */
+
     public function getPassWord()
     {
         return $this->m_sPassWord;
     }
 
-    /**
-     * @param mixed $m_sPassWord
-     */
+
     public function setPassWord($m_sPassWord)
     {
         if (!empty($m_sPassWord) && strlen($m_sPassWord) > 6) {
@@ -117,7 +106,7 @@ class User
         $statement = $conn->prepare("INSERT INTO users (firstname, lastname, email, password, userid)
 VALUES (:firstname, :lastname, :email, :password, :userid)");
         $statement->bindValue(":firstname", $this->getFirstName());
-        $statement->bindValue(":lastname", $this->getLastname());
+        $statement->bindValue(":lastname", $this->getLastName());
         $statement->bindValue(":email", $this->getEmail());
         $statement->bindValue(":userid", $this->getUserId());
         //paswoord hier pas hashen
@@ -131,7 +120,7 @@ VALUES (:firstname, :lastname, :email, :password, :userid)");
         //$statement->bindValue(":picture", $this->getMSPicture());
 
         if (!$statement->execute()) {
-            throw new Exception(" Je IMDterest account is niet geregistreerd, onze excuses.");
+            throw new Exception("Your registration has failed, please try again.");
         } else {
             $conn2 = Db::getInstance();
             $statement2 = $conn2->prepare("select id from users where firstname = :firstname");
@@ -173,7 +162,7 @@ VALUES (:firstname, :lastname, :email, :password, :userid)");
         $_SESSION["user_id"] = $id;
     }
 
-    // Get user for show on profile page
+    // Get user to show on deadlines
     public function getUser(){
 
 
