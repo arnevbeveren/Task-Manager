@@ -115,10 +115,6 @@ nav a.name{
     font-weight: 800;
 }
 
-.btnRemove{
-    font-size: 1em;
-    margin-top: -0.5em;
-}
 
 p#deadline{
     font-size: 1.5em;
@@ -171,8 +167,9 @@ p#duration{
 
 .remover{
     margin-left: 90%;
-    margin-top: -80px;
-    padding-bottom: 20px;
+    margin-top: -55px;
+    padding-bottom: 0px;
+    position: absolute;
 }
 
 .rood{
@@ -216,6 +213,10 @@ p#duration{
 
 p#name{
     color: #707070;
-    padding-bottom: 2em;
+    padding-bottom: 0em;
+}
+
+.hide{
+    padding-bottom: 0em;
 }
 
