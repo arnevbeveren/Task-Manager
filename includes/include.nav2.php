@@ -18,7 +18,7 @@
 
             <ul class="nav navbar-nav navbar-right">
 
-                <li><a class="name" href="#"><?php echo($currentProfile['firstname']);?> <?php echo($currentProfile['lastname']);?></a></li>
+                <li><a class="name" href="#"><?php echo htmlspecialchars($currentProfile['firstname']);?> <?php echo htmlspecialchars($currentProfile['lastname']);?></a></li>
                 <li><a href="logout.php">Logout</a></li>
 
             </ul>

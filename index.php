@@ -97,7 +97,7 @@ if( !empty($_POST)){
                 ?>
 
             <li>
-                <a href="index.php?list=<?php echo $list ?>">
+                <a href="index.php?list=<?php echo htmlspecialchars($list); ?>">
 
                     <?php
 
@@ -131,7 +131,7 @@ if( !empty($_POST)){
             <?php foreach($deadlines as $key=>$deadline):?>
 
 
-            <li id="<?php echo $deadline['id']; ?>">
+            <li id="<?php echo htmlspecialchars($deadline['id']); ?>">
 
                     <p class="
                     <?php
@@ -178,9 +178,9 @@ if( !empty($_POST)){
                         <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
                         <?php echo htmlspecialchars($deadline['duration']); ?>h</p>
 
-                    <p class="" id="deadline"><?php echo $deadline['deadline']; ?></p>
+                    <p class="" id="deadline"><?php echo htmlspecialchars($deadline['deadline']); ?></p>
 
-                    <p class="" id="list"><?php echo $deadline['list']; ?></p>
+                    <p class="" id="list"><?php echo htmlspecialchars($deadline['list']); ?></p>
 
                     <p class="" id="name">by <?php echo htmlspecialchars($deadline['firstname']); echo " "; echo htmlspecialchars($deadline['lastname']); ?></p>
 
