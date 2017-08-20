@@ -5,6 +5,9 @@ spl_autoload_register( function($class){
 });
 
     session_start();
+if(!isset($_SESSION['user_id'])){
+    header("Location:Login.php");
+}
 
     $user = new User();
     $currentProfile = $user->getUser();
