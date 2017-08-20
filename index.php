@@ -5,6 +5,10 @@ spl_autoload_register( function($class){
 
 session_start();
 
+if(!isset($_SESSION['user_id'])){
+    header("Location:Login.php");
+}
+
 
 $user = new User();
 $currentProfile = $user->getUser();
@@ -31,7 +35,7 @@ else{
 if( !empty($_POST)){
 
     if ($_POST['action'] === "removeDeadline") {
-        $deadline->Id = $_POST['id'];
+        $deadline->Id = ($_POST['id']);
 
         try {
             $deadline->removeDeadline();
@@ -123,7 +127,7 @@ if( !empty($_POST)){
     <div id="list" class="col-md-9">
         <ul id="listupdates">
 
-            <?php foreach($deadlines as $key=>$deadline): ?>
+            <?php foreach($deadlines as $key=>$deadline):?>
 
             <li id="<?php echo $deadline['id']; ?>">
 
