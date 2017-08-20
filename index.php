@@ -101,7 +101,7 @@ if( !empty($_POST)){
                     <?php
 
                     if($list !== $lastList){
-                        echo "<span id='folder' class=\"glyphicon glyphicon-folder-open\" aria-hidden=\"true\"></span>" . $list;
+                        echo "<span id='folder' class=\"glyphicon glyphicon-folder-open\" aria-hidden=\"true\"></span>" . htmlspecialchars($list);
                         $lastList = $list;
                     }
                     ?>
@@ -170,17 +170,17 @@ if( !empty($_POST)){
 
                     <p class="grijs" id="expiredate">
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                        <?php echo (new \DateTime($deadline['expiredate']))->format('l, jS F, Y'); ?></p>
+                        <?php echo (new \DateTime(htmlspecialchars($deadline['expiredate'])))->format('l, jS F, Y'); ?></p>
 
                     <p class="grijs" id="duration">
                         <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                        <?php echo $deadline['duration']; ?>h</p>
+                        <?php echo htmlspecialchars($deadline['duration']); ?>h</p>
 
                     <p class="" id="deadline"><?php echo $deadline['deadline']; ?></p>
 
                     <p class="" id="list"><?php echo $deadline['list']; ?></p>
 
-                    <p class="" id="name">by <?php echo $deadline['firstname']; echo " "; echo $deadline['lastname']; ?></p>
+                    <p class="" id="name">by <?php echo htmlspecialchars($deadline['firstname']); echo " "; echo htmlspecialchars($deadline['lastname']); ?></p>
 
                 <form class="remover" method='post' action=''>
 
