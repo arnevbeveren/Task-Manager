@@ -34,8 +34,9 @@ else{
 
 if( !empty($_POST)){
 
-    if ($_POST['action'] === "removeDeadline") {
+    if($_POST['action'] === "removeDeadline") {
         $deadline->Id = ($_POST['id']);
+
 
         try {
             $deadline->removeDeadline();
@@ -47,7 +48,6 @@ if( !empty($_POST)){
 
 
 }
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -95,6 +95,7 @@ if( !empty($_POST)){
             foreach($deadlines_menu as $key=>$deadline):
                 $list = $deadline['list'];
                 ?>
+
             <li>
                 <a href="index.php?list=<?php echo $list ?>">
 
@@ -128,6 +129,7 @@ if( !empty($_POST)){
         <ul id="listupdates">
 
             <?php foreach($deadlines as $key=>$deadline):?>
+
 
             <li id="<?php echo $deadline['id']; ?>">
 
@@ -182,15 +184,21 @@ if( !empty($_POST)){
 
                     <p class="" id="name">by <?php echo htmlspecialchars($deadline['firstname']); echo " "; echo htmlspecialchars($deadline['lastname']); ?></p>
 
+                <div class="<?php if($currentProfile['id'] === $deadline['userid'])
+                                        { echo 'show';}
+                                    else{echo 'hide';}?>">
+
                 <form class="remover" method='post' action=''>
 
-                    <input type='hidden' name='action' value='removeDeadline' />
+                    <input type='hidden' name='action' value='removeDeadline'/>
 
                     <input type='hidden' id='id' name='id' value="<?php echo $deadline['id']; ?>" />
 
                     <input type='image' src='img/soft_grey_action_delete.png' id="btnRemove <?php echo $deadline['id']; ?>" class="btnRemove" />
 
                 </form>
+
+                    </div>
             </li>
             <?php endforeach; ?>
         </ul>
